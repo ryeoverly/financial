@@ -1,0 +1,61 @@
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+
+export default function HomePage() {
+  return (
+    <div className="bg-white text-gray-900">
+      {/* Hero Section */}
+      <section className="min-h-screen flex flex-col items-center justify-center text-center px-6 py-24 bg-gradient-to-br from-blue-600 to-indigo-700 text-white">
+        <h1 className="text-5xl font-bold mb-4 max-w-2xl">Send Money Globally in Seconds</h1>
+        <p className="text-lg max-w-xl mb-8">
+          Seamless, secure, and lightning-fast international money transfers — trusted by millions worldwide.
+        </p>
+        <Button className="text-lg px-6 py-3 flex items-center gap-2">
+          Get Started <ArrowRight className="w-5 h-5" />
+        </Button>
+      </section>
+
+      {/* Trust Indicators */}
+      <section className="py-16 px-6 text-center bg-gray-50">
+        <h2 className="text-2xl font-semibold mb-6">Trusted by 10M+ users in 150+ countries</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm text-gray-600">
+          <div>🔒 Bank-level Security</div>
+          <div>⚡ Instant Transfers</div>
+          <div>💸 Low Fees</div>
+          <div>🌍 24/7 Global Access</div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="py-20 px-6 bg-white">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-12">Why Choose Us</h2>
+          <div className="grid md:grid-cols-3 gap-12">
+            <div>
+              <h3 className="text-xl font-semibold mb-2">Fast Transfers</h3>
+              <p>Send money to friends, family, or businesses across the globe in seconds.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-2">Secure Transactions</h3>
+              <p>We use cutting-edge encryption and fraud detection to keep your money safe.</p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-2">Transparent Fees</h3>
+              <p>No hidden charges. Know exactly what you're paying before you send.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 px-6 bg-blue-600 text-white text-center">
+        <h2 className="text-3xl font-bold mb-4">Start Sending Money Today</h2>
+        <p className="mb-8 text-lg">Sign up in minutes and experience financial freedom across borders.</p>
+        <Button className="bg-white text-blue-600 text-lg px-6 py-3 hover:bg-gray-200">
+          Create Account
+        </Button>
+      </section>
+    </div>
+  );
+}
