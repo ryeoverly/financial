@@ -1,0 +1,111 @@
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
+
+const transactions = [
+  { date: "May 31", description: "Grocery Store", amount: -72.15, status: "Completed" },
+  { date: "May 30", description: "Direct Deposit", amount: 1200.0, status: "Completed" },
+  { date: "May 28", description: "Transfer to Savings", amount: -300.0, status: "Completed" },
+  { date: "May 27", description: "Starbucks", amount: -5.45, status: "Completed" },
+  { date: "May 26", description: "Refund: Amazon", amount: 45.0, status: "Completed" },
+];
+
+const chartData = [
+  { name: "Week 1", spending: 250 },
+  { name: "Week 2", spending: 430 },
+  { name: "Week 3", spending: 390 },
+  { name: "Week 4", spending: 320 },
+];
+
+export default function AccountBalancePage() {
+  return (
+    <div className="p-6 space-y-6">
+      <h1 className="text-2xl font-bold">Account Overview</h1>
+      <p className="text-gray-500">Your latest balance and activity</p>
+
+      <Card>
+        <CardContent className="p-6 space-y-4">
+          <div className="flex justify-between items-center">
+            <div>
+              <p className="text-gray-500">Checking Account</p>
+              <h2 className="text-3xl font-semibold">$4,582.10</h2>
+              <p className="text-sm text-gray-400">Available: $4,400.00</p>
+              <p className="text-xs text-gray-400">Updated 2 mins ago</p>
+            </div>
+            <div className="space-x-2">
+              <Button>Transfer</Button>
+              <Button variant="outline">Add Funds</Button>
+              <Button variant="outline">Withdraw</Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardContent className="p-6">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-xl font-medium">Recent Activity</h3>
+            <Tabs defaultValue="all">
+              <TabsList>
+                <TabsTrigger value="all">All</TabsTrigger>
+                <TabsTrigger value="deposits">Deposits</TabsTrigger>
+                <TabsTrigger value="withdrawals">Withdrawals</TabsTrigger>
+                <TabsTrigger value="transfers">Transfers</TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
+          <div className="overflow-auto">
+            <table className="w-full text-left">
+              <thead>
+                <tr className="text-sm text-gray-500">
+                  <th className="py-2">Date</th>
+                  <th>Description</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {transactions.map((tx, index) => (
+                  <tr key={index} className="border-t text-sm">
+                    <td className="py-2">{tx.date}</td>
+                    <td>{tx.description}</td>
+                    <td className={tx.amount < 0 ? "text-red-500" : "text-green-600"}>
+                      {tx.amount < 0 ? "-" : "+"}${Math.abs(tx.amount).toFixed(2)}
+                    </td>
+                    <td>{tx.status}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardContent className="p-6">
+          <h3 className="text-xl font-medium mb-4">Spending Insights</h3>
+          <ResponsiveContainer width="100%" height={250}>
+            <LineChart data={chartData}>
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Line type="monotone" dataKey="spending" stroke="#3b82f6" strokeWidth={2} />
+            </LineChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardContent className="p-6 space-y-2">
+          <h3 className="text-xl font-medium">Account Details</h3>
+          <p><strong>Account Number:</strong> •••• 1234</p>
+          <p><strong>Routing Number:</strong> •••• 5678</p>
+          <p><strong>Account Type:</strong> Checking</p>
+          <p><strong>Institution:</strong> Fintech Bank</p>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
