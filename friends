@@ -1,0 +1,67 @@
+// File: FriendsTransactionsApp.jsx
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+
+const friendsData = [
+  {
+    name: "Samantha",
+    initials: "SA",
+    transactions: [
+      { description: "Lunch at Chipotle", amount: -12.45, time: "2h ago" },
+      { description: "Venmo from John", amount: 20.0, time: "1d ago" },
+    ],
+  },
+  {
+    name: "Leo",
+    initials: "LE",
+    transactions: [
+      { description: "Paid Uber split", amount: -5.5, time: "3h ago" },
+    ],
+  },
+  {
+    name: "Jessie",
+    initials: "JE",
+    transactions: [
+      { description: "Gifted you $10", amount: 10.0, time: "2d ago" },
+    ],
+  },
+];
+
+export default function FriendsTransactionsApp() {
+  return (
+    <div className="min-h-screen bg-gray-50 p-6">
+      <h1 className="text-2xl font-bold mb-4">Friends' Transactions</h1>
+      <div className="grid gap-4">
+        {friendsData.map((friend, idx) => (
+          <Card key={idx}>
+            <CardContent className="p-4">
+              <div className="flex items-center gap-3 mb-3">
+                <Avatar>
+                  <AvatarFallback>{friend.initials}</AvatarFallback>
+                </Avatar>
+                <div>
+                  <p className="font-semibold">{friend.name}</p>
+                  <p className="text-sm text-gray-500">
+                    {friend.transactions.length} recent {friend.transactions.length > 1 ? "transactions" : "transaction"}
+                  </p>
+                </div>
+              </div>
+              <ul className="space-y-2">
+                {friend.transactions.map((tx, tIdx) => (
+                  <li key={tIdx} className="flex justify-between text-sm text-gray-700">
+                    <span>{tx.description}</span>
+                    <span className={tx.amount < 0 ? "text-red-500" : "text-green-600"}>
+                      {tx.amount < 0 ? "-" : "+"}${Math.abs(tx.amount).toFixed(2)}
+                    </span>
+                    <span className="text-xs text-gray-400 ml-2">{tx.time}</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+}
