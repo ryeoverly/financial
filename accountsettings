@@ -1,0 +1,77 @@
+export default function AccountSettings() {
+  return (
+    <div className="min-h-screen bg-gray-50 p-6">
+      <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-2xl p-8 space-y-8">
+        <h2 className="text-2xl font-bold text-gray-800">Account Settings</h2>
+
+        {/* Profile Info */}
+        <section className="space-y-4">
+          <h3 className="text-lg font-semibold text-gray-700">Profile Information</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input
+              type="text"
+              placeholder="Full Name"
+              className="border rounded-xl p-3 w-full"
+              defaultValue="Jane Doe"
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              className="border rounded-xl p-3 w-full"
+              defaultValue="jane.doe@email.com"
+            />
+            <input
+              type="tel"
+              placeholder="Phone Number"
+              className="border rounded-xl p-3 w-full md:col-span-2"
+              defaultValue="+1 555 123 4567"
+            />
+          </div>
+        </section>
+
+        {/* Password Update */}
+        <section className="space-y-4">
+          <h3 className="text-lg font-semibold text-gray-700">Update Password</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input
+              type="password"
+              placeholder="Current Password"
+              className="border rounded-xl p-3 w-full"
+            />
+            <input
+              type="password"
+              placeholder="New Password"
+              className="border rounded-xl p-3 w-full"
+            />
+          </div>
+        </section>
+
+        {/* Notification Settings */}
+        <section className="space-y-4">
+          <h3 className="text-lg font-semibold text-gray-700">Notifications</h3>
+          <div className="space-y-2">
+            <label className="flex items-center gap-3">
+              <input type="checkbox" defaultChecked />
+              <span>Email alerts for transactions</span>
+            </label>
+            <label className="flex items-center gap-3">
+              <input type="checkbox" />
+              <span>SMS security alerts</span>
+            </label>
+            <label className="flex items-center gap-3">
+              <input type="checkbox" defaultChecked />
+              <span>Monthly balance summaries</span>
+            </label>
+          </div>
+        </section>
+
+        {/* Save Button */}
+        <div className="pt-4">
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl">
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
